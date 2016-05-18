@@ -1,4 +1,5 @@
 import sys as Sys
+import os, zipfile
 #
 # Get the first item from a list
 #
@@ -28,3 +29,9 @@ def printProgress (iteration, total, prefix = '', suffix = '', decimals = 2, bar
     Sys.stdout.flush()
     if iteration == total:
         print("\n")
+
+def zipdir(zname, zdir):
+    with zipfile.ZipFile(zname, 'w', zipfile.ZIP_DEFLATED) as zf:
+        for dirname, subdirs, files in os.walk(zdir):
+            for f in files:
+                zf.write(os.path.join(dirname, f))

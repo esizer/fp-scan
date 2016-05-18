@@ -1,0 +1,86 @@
+_______________________________________________________________
+        __          _______   _____                  
+        \ \        / /  __ \ / ____|                 
+         \ \  /\  / /| |__) | (___   ___  __ _ _ __  
+          \ \/  \/ / |  ___/ \___ \ / __|/ _` | '_ \ 
+           \  /\  /  | |     ____) | (__| (_| | | | |
+            \/  \/   |_|    |_____/ \___|\__,_|_| |_|
+
+        WordPress Security Scanner by the WPScan Team 
+                       Version 2.9
+          Sponsored by Sucuri - https://sucuri.net
+   @_WPScan_, @ethicalhack3r, @erwan_lr, pvdl, @_FireFart_
+_______________________________________________________________
+
+[34m[i][0m Updating the Database ...
+[34m[i][0m Update completed.
+[32m[+][0m URL: http://78frasercalgary.ca/
+[32m[+][0m Started: Wed May 18 12:52:33 2016
+
+[32m[+][0m robots.txt available under: 'http://78frasercalgary.ca/robots.txt'
+[32m[+][0m Interesting entry from robots.txt: http://78frasercalgary.ca/go/
+[32m[+][0m Interesting entry from robots.txt: http://78frasercalgary.ca/wp-admin/admin-ajax.php
+[33m[!][0m The WordPress 'http://78frasercalgary.ca/readme.html' file exists exposing a version number
+[32m[+][0m Interesting header: LINK: <http://78frasercalgary.ca/wp-json/>; rel="https://api.w.org/"
+[32m[+][0m Interesting header: LINK: <http://78frasercalgary.ca/>; rel=shortlink
+[32m[+][0m Interesting header: SERVER: Microsoft-IIS/8.5
+[32m[+][0m Interesting header: X-POWERED-BY: PHP/5.6.0
+[32m[+][0m Interesting header: X-POWERED-BY: ASP.NET
+[32m[+][0m XML-RPC Interface available under: http://78frasercalgary.ca/xmlrpc.php
+
+[32m[+][0m WordPress version 4.4.1 identified from advanced fingerprinting (Released on 2016-01-06)
+[31m[!][0m 7 vulnerabilities identified from the version number
+
+[31m[!][0m Title: WordPress 3.7-4.4.1 - Local URIs Server Side Request Forgery (SSRF)
+    Reference: https://wpvulndb.com/vulnerabilities/8376
+    Reference: https://wordpress.org/news/2016/02/wordpress-4-4-2-security-and-maintenance-release/
+    Reference: https://core.trac.wordpress.org/changeset/36435
+    Reference: https://hackerone.com/reports/110801
+    Reference: https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-2222
+[34m[i][0m Fixed in: 4.4.2
+
+[31m[!][0m Title: WordPress 3.7-4.4.1 - Open Redirect
+    Reference: https://wpvulndb.com/vulnerabilities/8377
+    Reference: https://wordpress.org/news/2016/02/wordpress-4-4-2-security-and-maintenance-release/
+    Reference: https://core.trac.wordpress.org/changeset/36444
+    Reference: https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-2221
+[34m[i][0m Fixed in: 4.4.2
+
+[31m[!][0m Title: WordPress <= 4.4.2 - SSRF Bypass using Octal & Hexedecimal IP addresses
+    Reference: https://wpvulndb.com/vulnerabilities/8473
+    Reference: https://codex.wordpress.org/Version_4.5
+    Reference: https://github.com/WordPress/WordPress/commit/af9f0520875eda686fd13a427fd3914d7aded049
+[34m[i][0m Fixed in: 4.5
+
+[31m[!][0m Title: WordPress <= 4.4.2 - Reflected XSS in Network Settings
+    Reference: https://wpvulndb.com/vulnerabilities/8474
+    Reference: https://codex.wordpress.org/Version_4.5
+    Reference: https://github.com/WordPress/WordPress/commit/cb2b3ed3c7d68f6505bfb5c90257e6aaa3e5fcb9
+[34m[i][0m Fixed in: 4.5
+
+[31m[!][0m Title: WordPress <= 4.4.2 - Script Compression Option CSRF
+    Reference: https://wpvulndb.com/vulnerabilities/8475
+    Reference: https://codex.wordpress.org/Version_4.5
+[34m[i][0m Fixed in: 4.5
+
+[31m[!][0m Title: WordPress 4.2-4.5.1 - MediaElement.js Reflected Cross-Site Scripting (XSS)
+    Reference: https://wpvulndb.com/vulnerabilities/8488
+    Reference: https://wordpress.org/news/2016/05/wordpress-4-5-2/
+    Reference: https://github.com/WordPress/WordPress/commit/a493dc0ab5819c8b831173185f1334b7c3e02e36
+    Reference: https://gist.github.com/cure53/df34ea68c26441f3ae98f821ba1feb9c
+    Reference: https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-4567
+[34m[i][0m Fixed in: 4.5.2
+
+[31m[!][0m Title: WordPress 4.2-4.5.1 - Pupload Same Origin Method Execution (SOME)
+    Reference: https://wpvulndb.com/vulnerabilities/8489
+    Reference: https://wordpress.org/news/2016/05/wordpress-4-5-2/
+    Reference: https://github.com/WordPress/WordPress/commit/c33e975f46a18f5ad611cf7e7c24398948cecef8
+    Reference: https://gist.github.com/cure53/09a81530a44f6b8173f545accc9ed07e
+    Reference: http://avlidienbrunn.com/wp_some_loader.php
+    Reference: https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-4566
+[34m[i][0m Fixed in: 4.4.3
+
+[32m[+][0m WordPress theme in use: fraser - v1.0
+
+[32m[+][0m Name: fraser - v1.0
+ |  Location: http://78frasercalgary.ca/wp-content/themes/fraser/

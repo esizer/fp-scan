@@ -1,14 +1,34 @@
-import argparse,base64, getpass, httplib, os, shutil, shlex,subprocess, urllib, urllib2
+import argparse, os, urllib, urllib2
 
-from fpscan_helpers import helpers
-from contextlib import closing
+from fpscan_helpers import helpers, fpftp, fpemail, scanner
 from collections import OrderedDict
+
+#
+# DEFAULTS
+#
+SEND_FROM = "info@fpscan.ca"
+
 #
 # Add arguments for FTP
 #
-parser = argparse.ArgumentParser(description='Download Sites File from iWeb.')
-parser.add_argument('-u', '--user', help="username for server", action="store", nargs=1, dest="user")
-parser.add_argument('-s', '--server', help="server address with file location", action="store", nargs=1, dest="server")
+parser = argparse.ArgumentParser(
+    description='Download Sites File from iWeb.'
+)
+parser.add_argument(
+    '-u', '--user',
+    help="username for server",
+    action="store", nargs=1, dest="user"
+)
+parser.add_argument(
+    '-s', '--server',
+    help="server address with file location",
+    action="store", nargs=1, dest="server"
+)
+parser.add_argument(
+    '-e', '--email',
+    help="define emails to send to seaprated by commas",
+    action="store", nargs=1, dest="emails"
+)
 
 args = parser.parse_args()
 
@@ -39,57 +59,24 @@ print("""
 #
 
 if args.user is not None and args.server is not None:
-
     user = helpers.get_first(args.user)
     server = helpers.get_first(args.server)
+    fpftp.ftp_conn(user, server)
+else:
+    print("No FTP settings detected. moving on...")
 
-    #Get Password and try to download file
-    while True:
-        try:
-            print "exit to close\n"
-            pwd = getpass.getpass('FTP Password: ')
-            if pwd == 'exit':
-                print "closing..."
-                exit(0)
-            auth = '%s:%s' % (urllib.quote(user), urllib.quote(pwd))
-            req = urllib2.Request("ftp://" + auth + '@%s' % (server))
-            res = urllib2.urlopen(req)
-            break
-        except urllib2.URLError, e:
-            print "\nIncorrect password, try again"
-
-    # Donwload the list of sites from iWeb
-    if 'res' in locals():
-        print('downloading sites.txt...')
-        with closing(res) as r:
-            if r == urllib2.URLError:
-                print
-            with open('sites.txt', 'wb') as f:
-                shutil.copyfileobj(r, f)
-
-    print('sites.txt donwloaded')
-
-i = 0
-l = helpers.file_len("sites.txt")
 #
 # Start WP Scan
 #
-print('scan commencing...')
-helpers.printProgress(i, l, prefix = "Scan Progress:", suffix = "Complete", barLength = 50)
-with open("sites.txt") as f:
+scanner.scan("./sites.txt")
 
-    for index, line in enumerate(f):
-        chomp_line = line.rstrip()
-        cmd = "./wpscan/wpscan.rb --update --batch --url " + chomp_line
+if args.emails is not None:
 
-        args = shlex.split(cmd)
-        log = open("sites/" + chomp_line + ".txt", "a")
-        log.seek(0)
-        log.truncate()
-        log.flush()
+    helpers.zipdir('scan_results.zip', './sites')
+    emails = helpers.get_first(args.emails)
+    fpemail.send_mail(emails, file='scan_results.zip')
 
-        p = subprocess.Popen(args, stdout=log)
-        p.wait()
+else:
+    print("No emails detected. moving on...")
 
-        i += 1
-        helpers.printProgress(i, l, prefix = "Scan Progress:", suffix = "Complete", barLength = 50)
+print "Completed Scan."
