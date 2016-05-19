@@ -11,7 +11,7 @@ def scan(sitelist):
 
         for index, line in enumerate(f):
             chomp_line = line.rstrip()
-            cmd = "./wpscan/wpscan.rb --update --batch --url " + chomp_line
+            cmd = "./wpscan/wpscan.rb --update --batch --url " + chomp_line + " --enumerate vp"
 
             args = shlex.split(cmd)
             log = open("sites/" + chomp_line + ".txt", "a")

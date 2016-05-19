@@ -6,7 +6,7 @@ from collections import OrderedDict
 #
 # DEFAULTS
 #
-SEND_FROM = "info@fpscan.ca"
+SEND_FROM = "Agent Smith<agentsmith@fpscan.com>"
 
 #
 # Add arguments for FTP
@@ -74,7 +74,8 @@ if args.emails is not None:
 
     helpers.zipdir('scan_results.zip', './sites')
     emails = helpers.get_first(args.emails)
-    fpemail.send_mail(emails, file='scan_results.zip')
+    vuns = helpers.detect_vuns('./sites')
+    fpemail.send_mail(emails, SEND_FROM, file='scan_results.zip', vuns=vuns)
 
 else:
     print("No emails detected. moving on...")

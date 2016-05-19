@@ -1,5 +1,6 @@
 import sys as Sys
-import os, zipfile
+import glob, mmap, os, zipfile
+from collections import OrderedDict
 #
 # Get the first item from a list
 #
@@ -35,3 +36,20 @@ def zipdir(zname, zdir):
         for dirname, subdirs, files in os.walk(zdir):
             for f in files:
                 zf.write(os.path.join(dirname, f))
+
+def detect_vuns(vdir):
+    lines = {}
+    i = 0
+    print "gathering vunerabilities for report..."
+    for infile in glob.glob( os.path.join(vdir, '*.txt') ):
+        with open(infile) as f:
+           for l in f:
+               if "We found" in l:
+                   lines.update({infile.replace(vdir, ""): l.rstrip()})
+                   i = i + 1
+    if i > 0:
+        print "found %s sites with vunerabilities" % (len(lines))
+        return lines
+    else:
+        print "found no vunerable sites"
+        return None
