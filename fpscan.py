@@ -7,12 +7,13 @@ from collections import OrderedDict
 # DEFAULTS
 #
 SEND_FROM = "Agent Smith<agentsmith@fpscan.com>"
+SMTP_SEVER = "127.0.0.1"
 
 #
 # Add arguments for FTP
 #
 parser = argparse.ArgumentParser(
-    description='Download Sites File from iWeb.'
+    description='Download Sites File from server.'
 )
 parser.add_argument(
     '-u', '--user',
@@ -75,7 +76,7 @@ if args.emails is not None:
     helpers.zipdir('scan_results.zip', './sites')
     emails = helpers.get_first(args.emails)
     vuns = helpers.detect_vuns('./sites')
-    fpemail.send_mail(emails, SEND_FROM, file='scan_results.zip', vuns=vuns)
+    fpemail.send_mail(emails, SEND_FROM, file='scan_results.zip', vuns=vuns, sever=SMTP_SEVER)
 
 else:
     print("No emails detected. moving on...")
