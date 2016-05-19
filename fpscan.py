@@ -76,7 +76,7 @@ if args.emails is not None:
     helpers.zipdir('scan_results.zip', './sites')
     emails = helpers.get_first(args.emails)
     vuns = helpers.detect_vuns('./sites')
-    fpemail.send_mail(emails, SEND_FROM, file='scan_results.zip', vuns=vuns, sever=SMTP_SEVER)
+    fpemail.send_mail(emails, SEND_FROM, file='scan_results.zip', vuns=vuns, server=SMTP_SEVER)
 
 else:
     print("No emails detected. moving on...")
