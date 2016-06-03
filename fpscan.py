@@ -8,7 +8,7 @@ from collections import OrderedDict
 # DEFAULTS
 #
 SEND_FROM = "Agent Smith<agentsmith@fpscan.com>"
-SMTP_SEVER = "mail.floating-point.com"
+SMTP_SEVER = "127.0.0.1"
 
 #
 # Add arguments for FTP
