@@ -1,5 +1,5 @@
 # fp-scan
-A tool used to automate scanning many WordPress sites with [WPScan](http://wpscan.org/).
+A tool used to automate scanning many WordPress sites with [WPScan](http://wpscan.org/) / [CMSmap](https://github.com/Dionach/CMSmap).
 
 ### FEATURES
 - Uses domains in a sites.txt to scan.
