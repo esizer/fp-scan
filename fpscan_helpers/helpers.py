@@ -38,17 +38,24 @@ def zipdir(zname, zdir):
                 zf.write(os.path.join(dirname, f))
 
 def detect_vuns(vdir):
+    log_levels = ['[L]', '[M]', '[H]']
     lines = {}
     i = 0
     print "gathering vunerabilities for report..."
     for infile in glob.glob( os.path.join(vdir, '*.txt') ):
         with open(infile) as f:
-           for l in f:
-               if "We found" in l:
-                   lines.update({infile.replace(vdir, ""): l.rstrip()})
-                   i = i + 1
+            for l in f:
+                if "We found" in l:
+                    if "could not determine a version" not in l:
+                        lines.update({infile.replace(vdir, ""): l.rstrip()})
+                        i = i + 1
+                for log in log_levels:
+                    if log in l:
+                        lines.update({infile.replace(vdir, ""): l.rstrip()})
+                        i = i + 1
+
     if i > 0:
-        print "found %s sites with vunerabilities" % (len(lines))
+        print "found %s sites with potential vunerabilities" % (len(lines))
         return lines
     else:
         print "found no vunerable sites"

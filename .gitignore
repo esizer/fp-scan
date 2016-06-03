@@ -2,3 +2,6 @@ scan_results.zip
 sites/*.*
 sites.txt
 wpscan
+CMSmap
+*.pyc
+/sfpscan_helpers/*.pyc

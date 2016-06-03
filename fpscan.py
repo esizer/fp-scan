@@ -1,3 +1,4 @@
+#!/usr/bin/python
 import argparse, os, urllib, urllib2
 
 from fpscan_helpers import helpers, fpftp, fpemail, scanner
@@ -7,7 +8,7 @@ from collections import OrderedDict
 # DEFAULTS
 #
 SEND_FROM = "Agent Smith<agentsmith@fpscan.com>"
-SMTP_SEVER = "127.0.0.1"
+SMTP_SEVER = "mail.floating-point.com"
 
 #
 # Add arguments for FTP
@@ -69,14 +70,14 @@ else:
 #
 # Start WP Scan
 #
-scanner.scan("./sites.txt")
+scanner.scan("sites.txt")
 
 if args.emails is not None:
 
     helpers.zipdir('scan_results.zip', './sites')
     emails = helpers.get_first(args.emails)
     vuns = helpers.detect_vuns('./sites')
-    fpemail.send_mail(emails, SEND_FROM, file='scan_results.zip', vuns=vuns, sever=SMTP_SEVER)
+    fpemail.send_mail(emails, SEND_FROM, file='scan_results.zip', vuns=vuns, server=SMTP_SEVER)
 
 else:
     print("No emails detected. moving on...")

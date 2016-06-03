@@ -12,6 +12,7 @@ A tool used to automate scanning many WordPress sites with [WPScan](http://wpsca
 
 Prerequisites:
 - [WPScan](http://wpscan.org/)
+- [CMSmap](https://github.com/Dionach/CMSmap)
 - Python >= 2.7
 - Git
 
@@ -26,7 +27,8 @@ Supported:
     touch sites.txt
 
 Install [WPScan](http://wpscan.org/) into the root directory
-* If you do not with to install wpscan directly inside, change the path in [helpers/scanner](https://github.com/cobraclamp/fp-scan/blob/master/fpscan_helpers/scanner.py#L14)
+Install [CMSmap](https://github.com/Dionach/CMSmap)
+* If you do not with to install wpscan/CMSmap directly inside, change the path in [helpers/scanner](https://github.com/cobraclamp/fp-scan/blob/master/fpscan_helpers/scanner.py#L14)
 * Add domains to be scanned, each on a new line
 * arguments support getting the file from FTP server
 

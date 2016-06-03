@@ -30,17 +30,19 @@ def send_mail(send_to, send_from, subject="FP Scan", file=None, server="127.0.0.
         """.format(len(vuns), vuns_string)
         text = text + new_text
     else:
-        text = text + "<span style:color=\"#00D318;\">Congrats! We couldn't find any vunerable sites.</span>"
+        #text = text + "<span style:color=\"#00D318;\">Congrats! We couldn't find any vunerable sites.</span>"
+        text = text + "<img src=\"http://floating-point.com/fpscan.jpg\" alt=\"No Vunerabilities Found\" />"
 
     if ',' in send_to:
         print "multiple emails"
         send_to = send_to.split(",")
+        send_to = ", ".join(send_to)
 
     print "building message"
     msg = MIMEMultipart()
     msg['Subject'] = subject
     msg['From'] = send_from
-    msg['To'] = ", ".join(send_to)
+    msg['To'] = send_to
     msg['Date'] = formatdate(localtime=True)
 
     msg.attach(MIMEText(text, 'html'))
